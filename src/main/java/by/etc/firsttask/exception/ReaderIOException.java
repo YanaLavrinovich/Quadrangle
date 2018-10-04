@@ -1,4 +1,4 @@
-package by.etc.firsttask.reader;
+package by.etc.firsttask.exception;
 
 public class ReaderIOException extends Exception{
 
