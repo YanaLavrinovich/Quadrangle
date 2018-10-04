@@ -1,6 +1,6 @@
 package by.etc.firsttask.readerFromFile;
 
-import by.etc.firsttask.exception.ReaderIOException;
+import by.etc.firsttask.exception.ReaderFromFileException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -8,7 +8,6 @@ import org.junit.Test;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ReaderFromFileTest {
@@ -25,7 +24,7 @@ public class ReaderFromFileTest {
         List<String> actual = new ArrayList<>();
         try {
             actual = reader.read(path);
-        } catch (ReaderIOException e) {
+        } catch (ReaderFromFileException e) {
             e.printStackTrace();
         }
         List<String> expected = new ArrayList<>();
