@@ -16,7 +16,7 @@ public class ReaderFromFileImpl implements ReaderFromFile {
         try {
             return Files.lines(path).collect(Collectors.toList());
         } catch (IOException e) {
-            throw new ReaderFromFileException(THE_FILE_IS_NOT_FOUND_MESSAGE, e.fillInStackTrace());
+            throw new ReaderFromFileException(THE_FILE_IS_NOT_FOUND_MESSAGE, e);
         }
     }
 }

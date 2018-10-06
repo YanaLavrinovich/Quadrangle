@@ -1,15 +1,15 @@
 package by.etc.firsttask.coordinateValidator;
 
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 
 public class CoordinateValidatorTest {
-    private static CoordinateValidator coordinateValidator;
+    private CoordinateValidator coordinateValidator;
 
     @BeforeClass
-    public static void setUp() {
+    public void setUp() {
         coordinateValidator = new CoordinateValidatorImpl();
     }
 
