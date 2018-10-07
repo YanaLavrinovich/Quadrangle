@@ -1,11 +1,11 @@
-package by.etc.firsttask.quadrangle;
-
-import by.etc.firsttask.point.Point;
+package by.etc.firsttask.entity;
 
 import java.io.Serializable;
 import java.util.Random;
 
 public class Quadrangle implements Serializable {
+    private static final long serialVersionUID = 1947573967463857669L;
+
     private Point vertex1;
     private Point vertex2;
     private Point vertex3;

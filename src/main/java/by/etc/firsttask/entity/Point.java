@@ -1,9 +1,10 @@
-package by.etc.firsttask.point;
+package by.etc.firsttask.entity;
 
 import java.io.Serializable;
 import java.util.Random;
 
 public class Point implements Serializable {
+    private static final long serialVersionUID = 2332848492756391043L;
 
     private double coordinateX;
     private double coordinateY;
