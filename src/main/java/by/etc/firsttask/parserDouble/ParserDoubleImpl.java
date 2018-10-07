@@ -15,9 +15,11 @@ public class ParserDoubleImpl implements ParserDouble {
         coordinateValidator = new CoordinateValidatorImpl();
     }
 
+    @Override
     public List<List<Double>> parse(List<String> inputData) {
         List<List<Double>> resultList = new ArrayList<>();
         for(String current : inputData) {
+            current = current.trim();
             if(coordinateValidator.isValid(current)) {
                 List<Double> line = parse(current);
                 resultList.add(line);

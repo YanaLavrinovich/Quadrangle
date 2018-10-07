@@ -79,7 +79,7 @@ public class Quadrangle implements Serializable {
     @Override
     public String toString() {
         return String.format("Entity %s [vertex 1: %s, vertex 2: %s, vertex 3: %s, vertex 4: %s]",
-                getClass().getName(), getVertex1().toString(), getVertex2().toString(),
+                getClass().getSimpleName(), getVertex1().toString(), getVertex2().toString(),
                 getVertex3().toString(), getVertex4().toString());
     }
 }

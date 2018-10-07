@@ -34,6 +34,7 @@ public class Point implements Serializable {
         if (obj == this) {
             return true;
         }
+
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
@@ -54,6 +55,6 @@ public class Point implements Serializable {
     @Override
     public String toString() {
         return String.format("Entity %s [x %.2f, y %.2f]",
-                getClass().getName(), getCoordinateX(),getCoordinateY());
+                getClass().getSimpleName(), getCoordinateX(),getCoordinateY());
     }
 }
