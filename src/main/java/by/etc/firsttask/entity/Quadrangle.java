@@ -1,15 +1,31 @@
 package by.etc.firsttask.entity;
 
-import java.io.Serializable;
-import java.util.Random;
 
-public class Quadrangle implements Serializable {
+import by.etc.firsttask.repository.NotifyEventArgs;
+import by.etc.firsttask.repository.QuadrangleRepository;
+import by.etc.firsttask.repository.RepositoryEntryStatus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.Flow;
+
+public class Quadrangle implements Serializable, Flow.Publisher {
     private static final long serialVersionUID = 1947573967463857669L;
+
+    private Integer id;
+    private String name;
 
     private Point vertex1;
     private Point vertex2;
     private Point vertex3;
     private Point vertex4;
+
+    private static List<Flow.Subscriber> subscribers = List.of(QuadrangleRepository.getInstance());
+
+    private static final Logger LOGGER = LogManager.getLogger(Quadrangle.class.getName());
 
     public Quadrangle(Point point1, Point point2, Point point3, Point point4) {
         vertex1 = point1;
@@ -18,12 +34,32 @@ public class Quadrangle implements Serializable {
         vertex4 = point4;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        LOGGER.info("Name was changed");
+        notifyAboutChange(this);
+    }
+
     public Point getVertex1() {
         return vertex1;
     }
 
     public void setVertex1(Point vertex1) {
         this.vertex1 = vertex1;
+        LOGGER.info("Vertex was changed");
+        notifyAboutChange(this);
     }
 
     public Point getVertex2() {
@@ -32,6 +68,8 @@ public class Quadrangle implements Serializable {
 
     public void setVertex2(Point vertex2) {
         this.vertex2 = vertex2;
+        LOGGER.info("Vertex was changed");
+        notifyAboutChange(this);
     }
 
     public Point getVertex3() {
@@ -40,6 +78,8 @@ public class Quadrangle implements Serializable {
 
     public void setVertex3(Point vertex3) {
         this.vertex3 = vertex3;
+        LOGGER.info("Vertex was changed");
+        notifyAboutChange(this);
     }
 
     public Point getVertex4() {
@@ -48,6 +88,8 @@ public class Quadrangle implements Serializable {
 
     public void setVertex4(Point vertex4) {
         this.vertex4 = vertex4;
+        LOGGER.info("Vertex was changed");
+        notifyAboutChange(this);
     }
 
     @Override
@@ -78,8 +120,26 @@ public class Quadrangle implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Entity %s [vertex 1: %s, vertex 2: %s, vertex 3: %s, vertex 4: %s]",
-                getClass().getSimpleName(), getVertex1().toString(), getVertex2().toString(),
+        return String.format("Entity %s [id: %d, name: %s, vertex 1: %s, vertex 2: %s, vertex 3: %s, vertex 4: %s]",
+                getClass().getSimpleName(), getId(), getName(), getVertex1().toString(), getVertex2().toString(),
                 getVertex3().toString(), getVertex4().toString());
+    }
+
+    @Override
+    public void subscribe(Flow.Subscriber subscriber) {
+        subscribers.add(subscriber);
+        LOGGER.info("Adding subscriber is done!");
+    }
+
+    private void notifyAboutChange(Quadrangle quadrangle) {
+        NotifyEventArgs eventArgs = new NotifyEventArgs(quadrangle, RepositoryEntryStatus.UPDATED);
+        subscribers.forEach(current -> {
+            try {
+                current.onNext(eventArgs);
+                current.onComplete();
+            } catch (Exception e) {
+                current.onError(e);
+            }
+        });
     }
 }

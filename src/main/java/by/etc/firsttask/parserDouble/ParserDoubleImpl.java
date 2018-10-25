@@ -2,6 +2,8 @@ package by.etc.firsttask.parserDouble;
 
 import by.etc.firsttask.coordinateValidator.CoordinateValidator;
 import by.etc.firsttask.coordinateValidator.CoordinateValidatorImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,8 @@ public class ParserDoubleImpl implements ParserDouble {
     private CoordinateValidator coordinateValidator;
 
     private static final String DELIMITER = "\\s+";
+
+    private static final Logger LOGGER = LogManager.getLogger(ParserDouble.class.getName());
 
     public ParserDoubleImpl() {
         coordinateValidator = new CoordinateValidatorImpl();
@@ -25,6 +29,7 @@ public class ParserDoubleImpl implements ParserDouble {
                 resultList.add(line);
             }
         }
+        LOGGER.info("Parsing input data is done");
         return resultList;
     }
 

@@ -1,7 +1,7 @@
 package by.etc.firsttask.quadrangleAction;
 
-import by.etc.firsttask.point.Point;
-import by.etc.firsttask.quadrangle.Quadrangle;
+import by.etc.firsttask.entity.Point;
+import by.etc.firsttask.entity.Quadrangle;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -44,41 +44,50 @@ public class QuadrangleActionTest {
 
     @DataProvider(name = "dataForIsQuadrangleTestPositive")
     public Object[][] dataForIsQuadrangleTestPositive() {
-        Quadrangle quadrangle = new Quadrangle(new Point(1,2), new Point(4,6),
-                new Point(6, 6), new Point(6,2));
-        return new Object[][]{{quadrangle, true}};
+        Point vertex1 = new Point(1,2);
+        Point vertex2 = new Point(4,6);
+        Point vertex3 = new Point(6, 6);
+        Point vertex4 = new Point(6,2);
+
+        return new Object[][]{{vertex1, vertex2, vertex3, vertex4, true}};
     }
 
     @Test(dataProvider = "dataForIsQuadrangleTestPositive")
-    public void isQuadrangleTestPositive(Quadrangle quadrangle,  boolean expectedResult) {
-        boolean actual = quadrangleAction.isQuadrangle(quadrangle);
+    public void isQuadrangleTestPositive(Point vertex1, Point vertex2, Point vertex3, Point vertex4,  boolean expectedResult) {
+        boolean actual = quadrangleAction.isQuadrangle(vertex1, vertex2, vertex3, vertex4);
         Assert.assertEquals(expectedResult, actual);
     }
 
     @DataProvider(name = "dataForIsQuadrangleTestNegativeY")
     public Object[][] dataForIsQuadrangleTestNegativeY() {
-        Quadrangle quadrangle = new Quadrangle(new Point(1,2), new Point(4,6),
-                new Point(6, 6), new Point(8,6));
-        return new Object[][]{{quadrangle}};
+        Point vertex1 = new Point(1,2);
+        Point vertex2 = new Point(4,6);
+        Point vertex3 = new Point(6, 6);
+        Point vertex4 = new Point(8,6);
+
+        return new Object[][]{{vertex1, vertex2, vertex3, vertex4, false}};
     }
 
     @Test(dataProvider = "dataForIsQuadrangleTestNegativeY")
-    public void isQuadrangleTestNegativeY(Quadrangle quadrangle) {
-        boolean actual = quadrangleAction.isQuadrangle(quadrangle);
-        Assert.assertFalse(actual);
+    public void isQuadrangleTestNegativeY(Point vertex1, Point vertex2, Point vertex3, Point vertex4,  boolean expectedResult) {
+        boolean actual = quadrangleAction.isQuadrangle(vertex1, vertex2, vertex3, vertex4);
+        Assert.assertEquals(expectedResult, actual);
     }
 
     @DataProvider(name = "dataForIsQuadrangleTestNegativeYAndX")
     public Object[][] dataForIsQuadrangleTestNegativeYAndX() {
-        Quadrangle quadrangle = new Quadrangle(new Point(1,1), new Point(4,6),
-                new Point(6, 6), new Point(3,3));
-        return new Object[][]{{quadrangle}};
+        Point vertex1 = new Point(1,1);
+        Point vertex2 = new Point(4,6);
+        Point vertex3 = new Point(6, 6);
+        Point vertex4 = new Point(3,3);
+
+        return new Object[][]{{vertex1, vertex2, vertex3, vertex4, false}};
     }
 
     @Test(dataProvider = "dataForIsQuadrangleTestNegativeYAndX")
-    public void isQuadrangleTestNegativeYAndX(Quadrangle quadrangle) {
-        boolean actual = quadrangleAction.isQuadrangle(quadrangle);
-        Assert.assertFalse(actual);
+    public void isQuadrangleTestNegativeYAndX(Point vertex1, Point vertex2, Point vertex3, Point vertex4,  boolean expectedResult) {
+        boolean actual = quadrangleAction.isQuadrangle(vertex1, vertex2, vertex3, vertex4);
+        Assert.assertEquals(expectedResult, actual);
     }
 
     @DataProvider(name = "dataForIsConvexTestPositive")

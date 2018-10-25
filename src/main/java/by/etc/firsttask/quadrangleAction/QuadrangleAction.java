@@ -1,6 +1,7 @@
 package by.etc.firsttask.quadrangleAction;
 
-import by.etc.firsttask.quadrangle.Quadrangle;
+import by.etc.firsttask.entity.Point;
+import by.etc.firsttask.entity.Quadrangle;
 
 public interface QuadrangleAction {
 
@@ -8,7 +9,7 @@ public interface QuadrangleAction {
 
     double calculatePerimeter(Quadrangle quadrangle);
 
-    boolean isQuadrangle(Quadrangle quadrangle);
+    boolean isQuadrangle(Point vertex1, Point vertex2, Point vertex3, Point vertex4);
 
     boolean isConvex(Quadrangle quadrangle);
 

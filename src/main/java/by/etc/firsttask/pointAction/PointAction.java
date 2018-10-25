@@ -1,6 +1,6 @@
 package by.etc.firsttask.pointAction;
 
-import by.etc.firsttask.point.Point;
+import by.etc.firsttask.entity.Point;
 
 public interface PointAction {
 

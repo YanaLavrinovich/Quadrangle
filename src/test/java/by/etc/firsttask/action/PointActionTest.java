@@ -1,6 +1,8 @@
-package by.etc.firsttask.pointAction;
+package by.etc.firsttask.action;
 
-import by.etc.firsttask.point.Point;
+import by.etc.firsttask.entity.Point;
+import by.etc.firsttask.pointAction.PointAction;
+import by.etc.firsttask.pointAction.PointActionImpl;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;

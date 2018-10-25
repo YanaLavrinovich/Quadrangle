@@ -16,14 +16,13 @@ public class CoordinateValidatorTest {
     @DataProvider(name = "dataForIsValidTestPositive")
     public Object[][] dataForIsValidTestPositive() {
         String test1 = "1 2 3 4 5 6 7 8";
-        String test2 = "1 2.0 3 -4 5 6 7 8";
+        String test2 = "1 2.0 3 4.7 5 6 7 8";
         return new Object[][]{{test1, true},
                               {test2, true}};
     }
 
     @Test(dataProvider = "dataForIsValidTestPositive")
     public void isValidTestPositive(String data, boolean expectedResult) {
-        String test = "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16";
         boolean actual = coordinateValidator.isValid(data);
         Assert.assertEquals(expectedResult, actual);
     }
